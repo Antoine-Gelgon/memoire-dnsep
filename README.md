@@ -4,9 +4,10 @@
 Mon mémoire de fin d'étude s'intitule «Documenter une production en design grapique».
 Ces fichiers sont ceux de sa mise en page.
 Vous pouvez aller voir le cahier ouvert de mes recherche sur:
-http://antoine-gelgon.fr/html-memoire
+http://antoine-gelgon.fr/archi-trace/
 
-//photo de l'édition.
+![Specimen](https://github.com/Antoine-Gelgon/memoire-dnsep/blob/master/doc/photo/vu.JPG?raw=true)
+![Specimen](https://github.com/Antoine-Gelgon/memoire-dnsep/blob/master/doc/scan/page2.jpg?raw=true)
 
 Cette édition à été réalisée avec différents langages (PHP, HTML, CSS et Javascript).
 Je me suis réapproprié l'outil Html2Print d'Open Source Publishing. Cet outil est
@@ -27,7 +28,9 @@ Pour toute question ou réflexion vous pouvez me joindre sur antoine.gelgon@gmai
 ####Sources et références.
 
 La balsamine (Osp) : http://osp.kitchen/work/balsamine.2014-2015/ (Travail réalisé avec Html2Print)
+
 Wikipapier (Etienne Ozeray) : https://github.com/EtienneOz/WikiPapier
+
 Le blog http://computedlayout.tumblr.com/ CSS Print, generative layouts, alternative publishing tools and more.
 
 ##Documentation
@@ -96,7 +99,7 @@ J'ai créé une méthode (Edit Txt) pour injecter du contenu aux pages directeme
 notamment pour travailler le drapeau d'un texte. Cette méthode reste à améliorer, des actions seraient peut-être automatisables.
 Je l'ai fait un peu sur-mesure pour ce travail, donc je pense qu'il faut pouvoir le réadapter.
 
-Photo de l'interface avec l'éditeur.
+![Specimen](https://github.com/Antoine-Gelgon/memoire-dnsep/raw/master/doc/screenShot/Screen.png)
  
 Tout d'abord il faut créer un fichier texte (.txt) dans vos dossier pour ensuite pouvoir l'associer à une page ou juste une balise d'une page.
 Il ne faut pas oublier de déclarer ce fichier.txt en "lecture et écriture" dans les propriétés.
