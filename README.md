@@ -67,15 +67,12 @@ Tout ce qui se trouve dans le master-page se retrouvera dans toutes les pages, c
 
 Le gabarit (#master-page) est injecté dans les pages (.preview-page) par du javascript dans le fichier print.js.
 
-
-<pre><code>
-
-
-$ (".preview-page").each(function(){$(this).append("<div class='inside'>");$("#master-page").children().clone().appendTo($(".inside", $(this)));$(".cahier", $(this)).appendTo($(".page", $(this)));$(".courant", $(this)).appendTo($(".cahier", $(this)));})
-
-
-</code></pre>
-
+	
+	$ (".preview-page").each(function(){$(this).append("<divclass='inside'>");
+	$("#master-page").children().clone().appendTo($(".inside", $(this)));
+	$(".cahier", $(this)).appendTo($(".page", $(this)));
+	$(".courant", $(this)).appendTo($(".cahier", $(this)));})	
+	
 
 Si vous souhaitez appliquer des styles différents aux pages paires ou impaires, il faut aller dans print.less
 
