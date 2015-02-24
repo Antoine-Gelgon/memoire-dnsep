@@ -43,21 +43,21 @@ mais doivent normalement marcher sur Epiphany et Arora (je l'ai su après avoir 
 Pour définir la taille de votre document il faut modifier les variables dans le fichier print.less :
 
 Le format:
-@page-width: 165mm; //largeur
-@page-height: 228mm; //hauteur
+<pre><code>@page-width: 165mm; //largeur
+@page-height: 228mm; //hauteur</code></pre>
 
 Les marges:
-@page-margin-inside: 13mm;  //marge intérieure
+<pre><code>@page-margin-inside: 13mm;  //marge intérieure
 @page-margin-outside: 27mm; //marge extérieure 
 @page-margin-top: 15mm;     //marge du haut de page
-@page-margin-bottom: 7mm;   //marge du bas de page
+@page-margin-bottom: 7mm;   //marge du bas de page</code></pre>
 
 ##Créer une page.
 
 Dans index.php dans la balise id="pages" créer un div avec comme classe "preview-page" et un id qui lui est propre.
 Exemple:
 
-<div id="page-1" class="preview-page"></div>
+<pre><code>div id="page-1" class="preview-page" </code></pre>
 
 
 ##Définir un gabarit de page.
@@ -67,27 +67,27 @@ Tout ce qui se trouve dans le master-page se retrouvera dans toutes les pages, c
 
 Le gabarit (#master-page) est injecté dans les pages (.preview-page) par du javascript dans le fichier print.js.
 
-$(".preview-page").each(function(){
-    $(this).append("<div class='inside'>");
-    $("#master-page").children().clone().appendTo($(".inside", $(this)));
-    $(".cahier", $(this)).appendTo($(".page", $(this)));
-    $(".courant", $(this)).appendTo($(".cahier", $(this)));
-});
+	 $(".preview-page").each(function(){
+	 $(this).append("<div  class='inside'>");
+	 $("#master-page").children().clone().appendTo($(".inside", $(this)));
+	 $(".cahier", $(this)).appendTo($(".page", $(this)));
+	 $(".courant", $(this)).appendTo($(".cahier", $(this)));
+	 });
+
+
+
 
 Si vous souhaitez appliquer des styles différents aux pages paires ou impaires, il faut aller dans print.less
 
-div.preview-page {
-  &:nth-child(odd) {
-    .page{
-      //ici le style des pages impaires
-    	}
-  }	
-  &:nth-child(even) {
-    .page{
-      //ici le style des pages paires.
-    }
-    }
-  }
+
+	  div.preview-page {
+	   &:nth-child(odd) {
+	       //ici le style des pages impaires
+	   }	
+	   &:nth-child(even) {
+	       //ici le style des pages paires.
+	     }
+	   }
 
 ##Inséré du contenu aux pages
 
@@ -108,7 +108,7 @@ Le fichier load.php appel et ouvre le fichier pour après l'injecter non pas dan
 
 Pour associer un fichier.txt à une balise il faut aller dans print.js et écrire.
 
-$("#page").load('bdd/load.php?page=direction&txt=nom_du_fichier_texte');
+<pre><code>$("#page").load('bdd/load.php?page=direction&txt=nom_du_fichier_texte');</code></pre>
 
 -#page : l'endroit qui doit recevoir le contenu du fichier.txt
 
@@ -125,11 +125,13 @@ Ici vous pouvez changer et rajouter des marqueurs dans le fichier mark-edit.php.
 
 Exemple:
 
-$enter = array('/.','./')
-$exit  = array('balise entrée','balise sortie')
 
-Ici le marqueur /. est enregistré 'balise entrée'dans le fichier texte.
-Le marqueur inverse ./ est enregistré comme 'balise sortie'.
+	 $enter = array('/.','./')
+	 $exit  = array('<h1>','</h1>')
+	 
+	 //Ici le marqueur /. est enregistré '<h1>' dans le fichier texte.
+	 //Le marqueur inverse ./ est enregistré comme '</h1>'.
+
 
 
 #####Nous pouvons même afficher des images simplement.
