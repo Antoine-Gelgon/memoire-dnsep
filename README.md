@@ -127,17 +127,17 @@ Ici vous pouvez changer et rajouter des marqueurs dans le fichier mark-edit.php.
 
 Exemple:
 
-$enter = array('/.','./')
+<pre><code>$enter = array('/.','./')
+$exit  = array('balise h1','balise /h1')
+</code></pre>
 
-$exit  = array('< h1 >','</ h1 >')
-
-Ici le marqueur /. est enregistré <h1> dans le fichier texte.
-Le marqueur inverse ./ est enregistré comme </h1>.
+Ici le marqueur /. est enregistré < h1 > dans le fichier texte.
+Le marqueur inverse ./ est enregistré comme < / h 1 >.
 
 /.Titre./
 Ce qui est écrit dans l'éditeur de la page web.
 
-< h1 >Titre</ h1 >
+< h 1 >Titre< / h 1 >
 Ce qui est véritablement écrit dans le fichier.txt
 
 Nous pouvons même afficher des images simplement.
