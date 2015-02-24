@@ -10,7 +10,7 @@ http://antoine-gelgon.fr/archi-trace/
 ![Specimen](https://github.com/Antoine-Gelgon/memoire-dnsep/blob/master/doc/scan/page2.jpg?raw=true)
 
 Cette édition à été réalisée avec différents langages (PHP, HTML, CSS et Javascript).
-Je me suis réapproprié l'outil Html2Print d'Open Source Publishing. Cet outil est
+Je me suis réapproprié l'outil [Html2Print](http://osp.kitchen/tools/html2print/) d'Open Source Publishing. Cet outil est
 une organisation de fichiers web, un environnement qui permet de concevoir un objet 
 imprimé à partir d'une page web. Plus besoin de logiciel de mise en page, tout se passe 
 entre un simple éditeur de code et un navigateur. L'impression se fait directement par 
