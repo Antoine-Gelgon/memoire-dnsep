@@ -58,7 +58,7 @@ Les marges:
 
 Dans index.php dans la balise id="pages" créer un div avec comme classe "preview-page" et un id qui lui est propre.
 Exemple:
-<code><pre> < div id="page-1" class="preview-page"></ div> </code></pre>
+<pre><code> < div id="page-1" class="preview-page"></ div> </code></pre>
 
 
 ###Définir un gabarit de page.
@@ -70,11 +70,12 @@ Le gabarit (#master-page) est injecté dans les pages (.preview-page) par du jav
 
 
 <pre><code>$(".preview-page").each(function(){
-	$(this).append("<div class='inside'>");
- $("#master-page").children().clone().appendTo($(".inside", $(this)));
- $(".cahier", $(this)).appendTo($(".page", $(this)));
- $(".courant", $(this)).appendTo($(".cahier", $(this)));
- });</pre></code>
+$(this).append("<div class='inside'>");
+$("#master-page").children().clone().appendTo($(".inside", $(this)));
+$(".cahier", $(this)).appendTo($(".page", $(this)));
+$(".courant", $(this)).appendTo($(".cahier", $(this)));
+});</code></pre>
+
 
 Si vous souhaitez appliquer des styles différents aux pages paires ou impaires, il faut aller dans print.less
 
