@@ -30,7 +30,7 @@ Wikipapier (Etienne Ozeray) : https://github.com/EtienneOz/WikiPapier
 Le blog http://computedlayout.tumblr.com/ CSS Print, generative layouts, alternative publishing tools and more.
 
 #Documentation
-
+<pre><code>
 
 Ce n'est pas très propre mais je vais essayé d'expliquer la méthode que j'ai appliqué.
 
@@ -43,22 +43,22 @@ mais doivent normalement marcher sur Epiphany et Arora (je l'ai su après avoir 
 Pour définir la taille de votre document il faut modifier les variables dans le fichier print.less :
 
 Le format:
-<pre><code>@page-width: 165mm; //largeur
- @page-height: 228mm; //hauteur</code></pre>
+@page-width: 165mm; //largeur
+ @page-height: 228mm; //hauteur
 
 Les marges:
 
-<pre><code>@page-margin-inside: 13mm;  //marge intérieure
+@page-margin-inside: 13mm;  //marge intérieure
 @page-margin-outside: 27mm; //marge extérieure
 @page-margin-top: 15mm;     //marge du haut de page
-@page-margin-bottom: 7mm;   //marge du bas de page</code></pre>
+@page-margin-bottom: 7mm;   //marge du bas de page
  
 
 ###Créer une page.
 
 Dans index.php dans la balise id="pages" créer un div avec comme classe "preview-page" et un id qui lui est propre.
 Exemple:
-<pre><code> < div id="page-1" class="preview-page"></ div> </code></pre>
+< div id="page-1" class="preview-page"></ div> 
 
 
 ###Définir un gabarit de page.
@@ -69,17 +69,17 @@ Tout ce qui se trouve dans le master-page se retrouvera dans toutes les pages, c
 Le gabarit (#master-page) est injecté dans les pages (.preview-page) par du javascript dans le fichier print.js.
 
 
-<pre><code>$(".preview-page").each(function(){
+$(".preview-page").each(function(){
 $(this).append("<div class='inside'>");
 $("#master-page").children().clone().appendTo($(".inside", $(this)));
 $(".cahier", $(this)).appendTo($(".page", $(this)));
 $(".courant", $(this)).appendTo($(".cahier", $(this)));
-});</code></pre>
+});
 
 
 Si vous souhaitez appliquer des styles différents aux pages paires ou impaires, il faut aller dans print.less
 
-<pre><code>div.preview-page {
+div.preview-page {
   &:nth-child(odd) {
     .page{
       //ici le style des pages impaires
@@ -90,7 +90,7 @@ Si vous souhaitez appliquer des styles différents aux pages paires ou impaires,
       //ici le style des pages paires.
     }
     }
-  }</code></pre>
+  }
 
 ###Inséré du contenu aux pages
 
@@ -137,11 +137,10 @@ $exit  = array('<h1>','</h1>')
 Ici le marqueur /. est enregistré <h1> dans le fichier texte.
 Le marqueur inverse ./ est enregistré comme </h1>.
 
-<pre><code>/.Titre./</prev></code
-
+/.Titre./
 Ce qui est écrit dans l'éditeur de la page web.
 
-<pre><code><h1>Titre<h1></prev></code>
+<h1>Titre<h1>
 Ce qui est véritablement écrit dans le fichier.txt
 
 Nous pouvons même afficher des images simplement.
@@ -155,3 +154,4 @@ image : le nom du fichier image.
 50 : l'image fera 50% de la largeur de la page.
 [/L] : ferme la balise image.
 [/F] : ferma la balise de la légende.
+</code></pre>
