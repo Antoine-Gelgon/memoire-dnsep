@@ -1,5 +1,4 @@
-Memoire DNSEP
-======
+#Memoire DNSEP
 
 Mon mémoire de fin d'étude s'intitule «Documenter une production en design grapique».
 Ces fichiers sont ceux de sa mise en page.
@@ -24,14 +23,14 @@ Typographies: Autopia (Antoine Gelgon); Work Sans (Wei Huang), Univers Else(OSP)
 
 Pour toute question ou réflexion vous pouvez me joindre sur antoine.gelgon@gmail.com
 
-Sources et références.
-===
+####Sources et références.
+
 La balsamine (Osp) : http://osp.kitchen/work/balsamine.2014-2015/ (Travail réalisé avec Html2Print)
 Wikipapier (Etienne Ozeray) : https://github.com/EtienneOz/WikiPapier
 Le blog http://computedlayout.tumblr.com/ CSS Print, generative layouts, alternative publishing tools and more.
 
-Documentation
-====
+#Documentation
+
 
 Ce n'est pas très propre mais je vais essayé d'expliquer la méthode que j'ai appliqué.
 
@@ -39,44 +38,47 @@ Je n'ai malheuresement pas réussi à utiliser les CSS régions qui permettent d
  le texte d'un div à un autre. Ces CSS ne marchent pas sur : chrome, chromium, firefox... 
 mais doivent normalement marcher sur Epiphany et Arora (je l'ai su après avoir fini l'édition).
 
-Définir un document.
-===
+###Définir un document.
+
 Pour définir la taille de votre document il faut modifier les variables dans le fichier print.less :
 
 Le format:
-@page-width: 165mm; //largeur
-@page-height: 228mm; //hauteur
+<pre><code>@page-width: 165mm; //largeur
+ @page-height: 228mm; //hauteur</code></pre>
 
 Les marges:
-@page-margin-inside: 13mm;  //marge intérieure
-@page-margin-outside: 27mm; //marge extérieure 
-@page-margin-top: 15mm;     //marge du haut de page
-@page-margin-bottom: 7mm;   //marge du bas de page
 
-Créer une page.
-===
+<pre><code>@page-margin-inside: 13mm;  //marge intérieure
+@page-margin-outside: 27mm; //marge extérieure
+@page-margin-top: 15mm;     //marge du haut de page
+@page-margin-bottom: 7mm;   //marge du bas de page</code></pre>
+ 
+
+###Créer une page.
+
 Dans index.php dans la balise id="pages" créer un div avec comme classe "preview-page" et un id qui lui est propre.
 Exemple:
-<div id="page-1" class="preview-page"></div>
+<code><pre> < div id="page-1" class="preview-page"></ div> </code></pre>
 
 
-Définir un gabarit de page.
-===
+###Définir un gabarit de page.
+
 La structure du gabarit de la page se trouve dans index.php dans l'id="master-page.
 Tout ce qui se trouve dans le master-page se retrouvera dans toutes les pages, c'est à dire dans les balises avec la class="preview-page".
 
 Le gabarit (#master-page) est injecté dans les pages (.preview-page) par du javascript dans le fichier print.js.
 
-$(".preview-page").each(function(){
-    $(this).append("<div class='inside'>");
-    $("#master-page").children().clone().appendTo($(".inside", $(this)));
-    $(".cahier", $(this)).appendTo($(".page", $(this)));
-    $(".courant", $(this)).appendTo($(".cahier", $(this)));
-});
+
+<pre><code>$(".preview-page").each(function(){
+	$(this).append("<div class='inside'>");
+ $("#master-page").children().clone().appendTo($(".inside", $(this)));
+ $(".cahier", $(this)).appendTo($(".page", $(this)));
+ $(".courant", $(this)).appendTo($(".cahier", $(this)));
+ });</pre></code>
 
 Si vous souhaitez appliquer des styles différents aux pages paires ou impaires, il faut aller dans print.less
 
-div.preview-page {
+<pre><code>div.preview-page {
   &:nth-child(odd) {
     .page{
       //ici le style des pages impaires
@@ -87,10 +89,10 @@ div.preview-page {
       //ici le style des pages paires.
     }
     }
-  }
+  }</code></pre>
 
-Inséré du contenu aux pages
-===
+###Inséré du contenu aux pages
+
 
 J'ai créé une méthode (Edit Txt) pour injecter du contenu aux pages directement par le navigateur. Les styles CSS sont appliqués par des marqueurs dans le texte.
 Ça reste du bidouillage, mais ça fonctionne et ça peut-être pratique si on veut faire des retours à la ligne,
@@ -117,8 +119,8 @@ $("#page").load('bdd/load.php?page=direction&txt=nom_du_fichier_texte');
 
 -nom_du_fichier_texte ne doit pas contenir sont extension (.txt) il est déjà indiqué dans load.php
 
-Les marqueurs
-===
+###Les marqueurs
+
 
 Les styles peuvent être mis directement dans la partie édition de la page web.
 On peut également créer des marqueurs grâce à la fonction PHP str_replace.
@@ -128,15 +130,17 @@ Ici vous pouvez changer et rajouter des marqueurs dans le fichier mark-edit.php.
 Exemple:
 
 $enter = array('/.','./')
+
 $exit  = array('<h1>','</h1>')
 
 Ici le marqueur /. est enregistré <h1> dans le fichier texte.
 Le marqueur inverse ./ est enregistré comme </h1>.
 
-/.Titre./
+<pre><code>/.Titre./</prev></code
+
 Ce qui est écrit dans l'éditeur de la page web.
 
-<h1>Titre<h1>
+<pre><code><h1>Titre<h1></prev></code>
 Ce qui est véritablement écrit dans le fichier.txt
 
 Nous pouvons même afficher des images simplement.
@@ -150,16 +154,3 @@ image : le nom du fichier image.
 50 : l'image fera 50% de la largeur de la page.
 [/L] : ferme la balise image.
 [/F] : ferma la balise de la légende.
-
-
-
-
-
-
-
-
-
-
-
-
-# memoire-dnsep
