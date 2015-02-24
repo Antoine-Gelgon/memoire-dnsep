@@ -1,0 +1,1 @@
+ <p><div style="text-align:left"><img src="bdd/Fig/Fig2-chap3.png" style="width:90%" /></br><span class="exposant" >Fig2 - Comparaison entre le caractère le <b>Bistream Vera</b> et son fork le <b>DéjàVu</b>.</br>(&#8239visuel d'Étienne Ozeray&#8239)</span></div></br></br></p>        

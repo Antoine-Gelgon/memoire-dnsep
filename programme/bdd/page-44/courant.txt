@@ -1,0 +1,1 @@
+ </br><div style="text-align:center"><img src="bdd/Fig/Fig4-chap3.jpg" style="width:80%" /></br><span class="exposant" >Fig4 - Évolution des forks entre la <b>Courier</b>,  la <b>Nimbus Mono L</b>, </br>la <b>NotCourierSans</b> et la <b>PropCourierSans</b>. </br>(&#8239visuel de Loraine Furter&#8239)</span></div>             

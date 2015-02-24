@@ -1,0 +1,506 @@
+/* __________________________________ DEBUG __________________________________ */
+html.debug {
+    /*outline: 1px solid purple;*/
+
+    div.preview-page {
+        outline: 1px solid blue;
+    }
+
+    .page {
+          outline: 1px solid purple;
+    }
+
+}
+
+
+/* __________________________________ VARIABLES __________________________________ */
+//@page-width: 175mm;
+//@page-height: 240mm;
+@page-width: 165mm;
+@page-height: 228mm;
+//@page-height: 175mm;
+//@page-width: 240mm;
+@spread: @page-width*2;
+@crop-length: 7mm;
+@crop-offset: 5mm;
+@crop: @crop-length + @crop-offset;    // Based on Scribus cropmarks with 5mm of bleed -> 7mm of marks + 5mm of offset
+@page-width-crop: @page-width + (@crop*2);
+@page-height-crop: @page-height + (@crop*2);
+
+//@small-page-width: auto;
+@small-page-height: auto;
+
+@page-margin-inside:13mm;
+@page-margin-outside:27mm;
+@page-margin-top: 15mm;
+@page-margin-bottom: 7mm;
+
+@font-size: 16pt;
+@line-height: 1.2em;
+
+
+
+
+@color: black;
+
+/* __________________________________ INTERFACE CLASSES  __________________________________ */
+@media print {
+    .ui-resizable-handle,
+    .button,
+    #interface {
+        display: none;
+    }
+}
+
+
+.button {
+    z-index: 1000;
+    background-color: black;
+    font-family:sans-serif;
+    text-transform: uppercase;
+    font-size: 12px !important;
+    letter-spacing: 1px;
+    color: white;
+    margin: 0;
+    padding: 5px 7px;
+    cursor: pointer;
+    border: 0;
+
+    &:hover {
+        background-color: white;
+        color: black;
+        outline: 1px solid black;
+    }
+}
+.button-active {
+    background-color: white;
+    color: black;
+    outline: 1px solid black;
+}
+
+.lo-res {
+    outline: 10px solid red;
+}
+
+div#interface {
+    font-family:sans-serif;
+    text-transform: uppercase;
+    font-size: 12px !important;
+    line-height: 16px;
+    letter-spacing: 1px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+
+    a {
+        text-decoration: none;
+        position: static;
+    }
+
+    div#toc {
+        display: inline-block;
+
+        ul#toc-pages {
+            display: none;
+            background-color: black;
+            position: absolute;
+            //right: 0;
+            bottom: 2em;
+            height: 200px;
+            width: 80px;
+            overflow: auto;
+
+            a {
+                color: white;
+            }
+        }
+        button {
+            width: 80px;
+        }
+    }
+
+    div#modi {
+        display: inline-block;
+
+        ul#modi-cont {
+            display: none;
+            background-color: black;
+            position: absolute;
+            //right: 0;
+            bottom: 2em;
+            height: 200px;
+            width: 80px;
+            overflow: auto;
+
+            a {
+                color: white;
+            }
+        }
+        button {
+            width: 80px;
+        }
+    }
+}
+
+/* __________________________________ ABSOLUTE POSITIONNED OBJECTS __________________________________ */
+/* Adding .moveable class to an object makes it absolutely positionned on the page.
+ * You can then move it around and resize it.
+ * Copy its properties (i.e. "top: 22px; left: 101px; width: 212px; height: 244px;).
+ * Paste those properties back to the object's "style" attribute.
+ */
+.inside {
+    position: relative;
+    height: @page-height;
+}
+.moveable {
+    position: absolute;
+    overflow: hidden;
+    z-index: -1010 !important;
+
+    &.foreground {
+        z-index: 1000 !important;
+    }
+
+    figure {
+        width: 100%;
+        height: 100%;
+    }
+
+}
+
+
+
+/* __________________________________ IMAGES __________________________________ */
+/* Use those classes for images to fit width or height of parent elements or both. */
+
+/*img.fit-height {
+    height: 100%;
+}
+
+img.fit-width {
+    width: 100%;
+}*/
+
+.float {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+/* __________________________________ PAGE SETTINGS  __________________________________ */
+* {
+    -webkit-print-color-adjust: exact;  /* Allows printing of background colors */
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "liga", "dlig", "clig", "kern";
+}
+
+@page {
+    //size: @page-width @page-height; // format coupé
+    size: @page-width-crop 326mm;  // format avec cropmarks
+    margin: 0;
+}
+
+html.spread {
+    width: @page-width-crop * 2;
+
+    /*@page {*/
+        /*//size: @page-width *2 @page-height; // format coupé*/
+        /*size: @page-width-crop *2  @page-height-crop;  // format avec cropmarks*/
+    /*}*/
+
+    .preview-page {
+        outline: 1px solid black;
+        float: left;
+
+        &:first-child {
+            margin-left: @page-width !important;
+        }
+        &:nth-child(odd) {
+            margin-left: -@crop * 2;
+        }
+    }
+}
+
+html {
+    width: @page-width-crop;
+
+}
+body {
+    position: absolute;
+}
+
+.page {
+    height: @page-height;
+    width: @page-width;
+    margin: @crop;
+    margin-bottom: 0;
+    //padding-top: @page-margin-top;
+    //padding-bottom: @page-margin-bottom;
+    -webkit-flow-from: myFlow;
+    position: absolute;
+}
+div#content {
+    -webkit-flow-into: myFlow;
+}
+
+/* __________________________________ PRINT MARKS  __________________________________ */
+div#master-page {
+    position: absolute;
+    top: 0;
+    z-index: -500;
+    width: 100%;
+    z-index: -1000;
+
+    /*&.background {*/
+        /*z-index: -10000;*/
+    /*}*/
+}
+.print-marks {
+    position: absolute;
+    width: 100%;
+    height: @page-height-crop;
+    /*height: 1180px;*/
+    top: 0;
+    bottom: 0;
+}
+div.preview-page {
+  //outline: 1px solid black;
+    width: @page-width-crop;
+    height: @page-height-crop;
+    z-index: -10;
+    outline-offset: -@crop;
+    counter-increment: page-counter;
+    page-break-inside: avoid;
+    page-break-after: always;
+    overflow: hidden;
+
+    &.overflow {
+        overflow: visible;
+    }
+
+    .folio {
+      font-family:'UniversElse';
+        position: absolute;
+        bottom: 7mm;
+        //width: 10mm;
+    }
+
+    &:nth-child(odd) {
+        .page {
+        }
+        .titre-courant {
+            text-align: right;
+        }
+        .folio {
+          right:6mm;
+        }
+    }
+    &:nth-child(even) {
+        .page {
+        }
+        .titre-courant {
+            text-align: left;
+        }
+        .folio {
+          left:5.5mm;
+        }
+    }
+}
+
+/* __________________________________ CROP MARKS  __________________________________ */
+div.crop-top-left,
+div.crop-top-right,
+div.crop-bottom-right,
+div.crop-bottom-left {
+    height: @crop;
+    width:  @crop;
+    position: absolute;
+}
+
+div.crop-top-left {
+    left: 0;
+    top: 0;
+}
+div.crop-top-right {
+    right: 0;
+    top: 0;
+}
+div.crop-bottom-right {
+    right: 0;
+    bottom: 0;
+}
+div.crop-bottom-left {
+    left: 0;
+    bottom: 0;
+}
+div.crop-top,
+div.crop-right,
+div.crop-bottom,
+div.crop-left {
+    width: @crop-length;
+    height: @crop-length;
+    position: absolute;
+}
+div.crop-top {
+    border-top: 1px solid black;
+}
+div.crop-right {
+    border-right: 1px solid black;
+}
+div.crop-bottom {
+    border-bottom: 1px solid black;
+}
+div.crop-left {
+    border-left: 1px solid black;
+}
+
+
+/* __________________________________ CONTENT __________________________________ */
+div#content {
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /* Avoids headings to be cut or to be orphans.
+     * But it doesn't seem to work
+     * if the element after has a page-break-inside avoid. It tries its best! */
+    -webkit-region-break-inside: avoid;
+    -webkit-region-break-after: avoid;
+}
+.region-break {
+    /* Apply this class to an element to put it on a new region.
+     * Hint:
+     * You can also use an empty <div class="page-break"></div>
+     * if you want to put manual page breaks without attaching it to an HTML element
+     */
+    -webkit-region-break-before: always;
+}
+
+/* AN EXAMPLE TO AVOID PAGE BREAK INSIDE,
+ * HERE NO PARAGRAPH WILL BE CUT,
+ * BUT YOU MIGHT WANT TO DEACTIVATE THIS */
+p {
+    /*-webkit-region-break-inside: avoid;*/
+}
+
+/* __________________________________ PLAQUES __________________________________ */
+
+
+.edit-box{
+  font-size:10px;
+  display:block;
+  position:fixed;
+  right:0px;
+  width:40%;
+  height:auto;
+  background:#F5FFFA;
+  resize:horizontal;
+  overflow:scroll;
+  padding:10px;
+
+  textarea {
+    font-size:10px;
+
+    decoration:none;
+    //resize:none;
+    background:white;
+
+    border:none;
+    outline:0.5px solid grey;
+    background:none;
+    width:100%;
+    margin:0;
+    height:550px;
+  }
+
+
+}
+
+/*-----------------------FOLIO-------------------------*/
+
+#page-1 .folio:after { content: ""; }
+#page-2 .folio:after { content: ""; }
+#page-3 .folio:after { content: ""; }
+#page-4 .folio:after { content: ""; }
+#page-5 .folio:after { content: ""; }
+#page-6 .folio:after { content: ""; }
+#page-7 .folio:after { content: "9"; }
+#page-8 .folio:after { content: "10"; }
+#page-9 .folio:after { content: "11"; }
+
+#page-10 .folio:after { content: "12"; }
+#page-11 .folio:after { content: "13"; }
+#page-12 .folio:after { content: "14"; }
+#page-13 .folio:after { content: "15"; }
+#page-14 .folio:after { content: "16"; }
+#page-15 .folio:after { content: "17"; }
+#page-16 .folio:after { content: "18"; }
+#page-17 .folio:after { content: "19"; }
+#page-18 .folio:after { content: "20"; }
+#page-19 .folio:after { content: ""; }
+
+#page-20 .folio:after { content: ""; }
+#page-21 .folio:after { content: ""; }
+#page-22 .folio:after { content: ""; }
+#page-23 .folio:after { content: "25"; }
+#page-24 .folio:after { content: "26"; }
+#page-25 .folio:after { content: "27"; }
+#page-26 .folio:after { content: "28"; }
+#page-27 .folio:after { content: "29"; }
+#page-28 .folio:after { content: "30"; }
+#page-29 .folio:after { content: "31"; }
+
+#page-30 .folio:after { content: ""; }
+#page-31 .folio:after { content: ""; }
+#page-32 .folio:after { content: ""; }
+#page-33 .folio:after { content: "35"; }
+#page-34 .folio:after { content: "36"; }
+#page-35 .folio:after { content: "37"; }
+#page-36 .folio:after { content: "38"; }
+#page-37 .folio:after { content: "39"; }
+#page-38 .folio:after { content: "40"; }
+#page-39 .folio:after { content: "41"; }
+
+#page-40 .folio:after { content: "42"; }
+#page-41 .folio:after { content: "43"; }
+#page-42 .folio:after { content: "44"; }
+#page-43 .folio:after { content: "45"; }
+#page-44 .folio:after { content: "46"; }
+#page-45 .folio:after { content: "47"; }
+#page-46 .folio:after { content: ""; }
+#page-47 .folio:after { content: ""; }
+#page-48 .folio:after { content: ""; }
+#page-49 .folio:after { content: "51"; }
+
+#page-50 .folio:after { content: "52"; }
+#page-51 .folio:after { content: "53"; }
+#page-52 .folio:after { content: "54"; }
+#page-53 .folio:after { content: "55"; }
+#page-54 .folio:after { content: "56"; }
+#page-55 .folio:after { content: "57"; }
+#page-56 .folio:after { content: "58"; }
+#page-57 .folio:after { content: "59"; }
+#page-58 .folio:after { content: "60"; }
+#page-59 .folio:after { content: "61"; }
+
+#page-60 .folio:after { content: "62"; }
+#page-61 .folio:after { content: ""; }
+#page-62 .folio:after { content: ""; }
+#page-63 .folio:after { content: ""; }
+#page-64 .folio:after { content: ""; }
+#page-65 .folio:after { content: ""; }
+#page-66 .folio:after { content: ""; }
+#page-67 .folio:after { content: ""; }
+#page-68 .folio:after { content: ""; }
+#page-69 .folio:after { content: ""; }
+
+#page-70 .folio:after { content: "72"; }
+#page-71 .folio:after { content: "73"; }
+#page-72 .folio:after { content: "74"; }
+#page-73 .folio:after { content: "75"; }
+#page-74 .folio:after { content: "76"; }
+#page-75 .folio:after { content: "77"; }
+#page-76 .folio:after { content: "78"; }
+#page-77 .folio:after { content: "79"; }
+#page-78 .folio:after { content: "80"; }
+#page-79 .folio:after { content: "81"; }

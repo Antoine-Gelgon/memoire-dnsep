@@ -1,0 +1,1 @@
+  <p></br></br></br></br><div style="text-align:center"><img src="bdd/Fig/Fig3-chap3.png" style="width:85%" /></br><span class="exposant" >Fig3 - Le changelog de la typographie <b>DejaVu</b> entre les versions </br>2.32 et 2.33 et les versions 2.33 et 2.34. </span></div></br></br></p>                  
