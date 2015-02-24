@@ -43,14 +43,14 @@ Pour définir la taille de votre document il faut modifier les variables dans le
 
 Le format:
 <pre><code>@page-width: 165mm; //largeur
- @page-height: 228mm; //hauteur</pre></code>
+ @page-height: 228mm; //hauteur</code></pre>
 
 Les marges:
 
 <pre><code>@page-margin-inside: 13mm;  //marge intérieure
 @page-margin-outside: 27mm; //marge extérieure
 @page-margin-top: 15mm;     //marge du haut de page
-@page-margin-bottom: 7mm;   //marge du bas de page</pre></code>
+@page-margin-bottom: 7mm;   //marge du bas de page</code></pre>
  
 
 ###Créer une page.
@@ -68,13 +68,7 @@ Tout ce qui se trouve dans le master-page se retrouvera dans toutes les pages, c
 Le gabarit (#master-page) est injecté dans les pages (.preview-page) par du javascript dans le fichier print.js.
 
 <pre><code>
-$(".preview-page").each(function(){
-$(this).append("<div class='inside'>");
-$("#master-page").children().clone().appendTo($(".inside", $(this)));
-$(".cahier", $(this)).appendTo($(".page", $(this)));
-$(".courant", $(this)).appendTo($(".cahier", $(this)));
-});</pre></code>
-
+$ (".preview-page").each(function(){$(this).append("<div class='inside'>");$("#master-page").children().clone().appendTo($(".inside", $(this)));$(".cahier", $(this)).appendTo($(".page", $(this)));$(".courant", $(this)).appendTo($(".cahier", $(this)));})</code></pre>
 
 Si vous souhaitez appliquer des styles différents aux pages paires ou impaires, il faut aller dans print.less
 
