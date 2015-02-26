@@ -101,7 +101,7 @@ Je l'ai fait un peu sur-mesure pour ce travail, donc je pense qu'il faut pouvoir
 
 ![Specimen](https://github.com/Antoine-Gelgon/memoire-dnsep/raw/master/doc/screenShot/Screen.png)
  
-Tout d'abord il faut créer un fichier texte (.txt) dans vos dossier pour ensuite pouvoir l'associer à une page ou juste une balise d'une page.
+Tout d'abord il faut créer un fichier texte (.txt) dans vos dossiers pour ensuite pouvoir l'associer à une page ou juste une balise d'une page.
 Il ne faut pas oublier de déclarer ce fichier.txt en "lecture et écriture" dans les propriétés.
 
 Le fichier call-txt.php appel grâce à la fonction PHP «opendir» le fichier texte de la page pour l'afficher dans la partie «Edit Txt» de la page web.
