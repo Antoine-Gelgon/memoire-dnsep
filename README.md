@@ -3,7 +3,7 @@
 
 Mon mémoire de fin d'étude s'intitule «Documenter une production en design grapique».
 Ces fichiers sont ceux de sa mise en page.
-Vous pouvez aller voir le cahier ouvert de mes recherche sur:
+Vous pouvez aller voir le cahier ouvert de mes recherches sur:
 http://antoine-gelgon.fr/archi-trace/
 
 ![Specimen](https://github.com/Antoine-Gelgon/memoire-dnsep/blob/master/doc/photo/vu.JPG?raw=true)
